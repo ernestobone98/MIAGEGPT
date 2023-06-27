@@ -7,35 +7,25 @@
 }
 
 body {
-    margin: 0;
-    padding: 0;
+    height: 100vh;
     background-color: #343541;
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 h1 {
     font-size: 33px;
     font-weight: 600;
-    padding: 200px 0;
-}
-
-.side-bar {
-    background-color: #202123;
-    width: 244px;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    padding: 20px 0;
+    text-align: center;
 }
 
 .main {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    justify-content: space-between;
     height: 100vh;
-    width: 100%;
+    width: 70%;
 }
 
 .bottom-section {
@@ -95,25 +85,6 @@ button {
     margin: 10px;
 }
 
-nav {
-    border: solid 0.5px rgba(255, 255, 255, 0.5);
-    padding: 10px;
-    margin: 10px;
-    border-radius: 5px;
-}
-
-.history {
-    padding: 10px;
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
-    height: 100%
-}
-
-.history p {
-    cursor: pointer;
-}
-
 .image-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -123,7 +94,6 @@ nav {
 .image-container {
     border-radius: 15px;
     overflow: hidden;
-    /* box-shadow: rgb(38, 57, 77) 0 20px 30px -10px; */
     display: inline-block;
     width: 100%;
     box-sizing: border-box;
@@ -184,12 +154,32 @@ nav {
     display: none;
 }
 
-/* #output {
-    display: flex;
-    flex-direction: column-reverse;
-} */
-
 #output-container {
+    flex: 1;
     max-height: 80vh;
     overflow-y: auto;
+    padding: 20px 30px;
+}
+
+.message {
+    background-color: #202123;
+    padding: 10px;
+    width: fit-content;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    max-width: 40%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+
+.user_message{
+    background-color: #4f505c;
+    margin-left: auto;
+}
+
+.footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

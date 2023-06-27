@@ -18,7 +18,7 @@ let chunks = [];
 window.onload = init;
 
 function init() {
-    outputElement = document.querySelector('#output');
+    outputElement = document.getElementById('output-container');
     submitButton = document.querySelector('#submit');
     loader = document.querySelector('.loader');
     submitButton.addEventListener('click', processInput);
@@ -77,9 +77,13 @@ function hideLoader() {
 }
 
 async function processInput() {
-    // document.querySelector('h1').style.display = 'none';
     showLoader();
     var inputElement = document.querySelector('input');
+    
+    var pElement = document.createElement('p');
+    pElement.textContent = inputElement.value;
+    pElement.classList.add('message', 'user_message');
+    outputElement.append(pElement);
 
     if (inputElement.value.startsWith('/image ')) {
         console.log('Je génère une image Dall-E avec comme demande : ' + inputElement.value.split('/image ')[1]);
@@ -121,6 +125,7 @@ async function getImage(prompt) {
     });
 
     outputElement.append(gridContainer);
+    gridContainer.classList.add('message');
     inputElement.value = '';
 }
 
@@ -177,6 +182,7 @@ async function getResponseFromGPT() {
         // On cree un element p pour la réponse
         const pElementChat = document.createElement('p');
         pElementChat.textContent = chatGptReponseTxt;
+        pElementChat.classList.add('message');
         // On ajoute la réponse dans le div output
         outputElement.append(pElementChat);
 
@@ -217,7 +223,6 @@ function startRecording() {
 async function stopRecording() {
     mediaRecorder.stop();
 
-    // Habilitar/deshabilitar botones u otras acciones relacionadas con la grabación
     recordButton.disabled = false;
     stopButton.disabled = true;
 
@@ -238,9 +243,8 @@ async function stopRecording() {
         .then((response) => response.json())
         .then((data) => {
             console.log(data);
-            // write the response in outputElement
-            outputElement.append(data.text);
-
+            // write the response in input
+            inputElement.value = data.text;
         })
         .catch((error) => {
             console.error('Error in audio:', error);

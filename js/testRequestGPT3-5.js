@@ -60,7 +60,7 @@ function hideLoader() {
 async function processInput() {
     showLoader();
     var inputElement = document.querySelector('input');
-    
+
     var pElement = document.createElement('p');
     pElement.textContent = inputElement.value;
     pElement.classList.add('message', 'user_message');
@@ -185,6 +185,7 @@ function startRecording() {
     navigator.mediaDevices.getUserMedia({ audio: true })
         .then(function (stream) {
             mediaRecorder = new MediaRecorder(stream);
+            chunks = []; // Reiniciar los chunks
 
             mediaRecorder.addEventListener('dataavailable', function (event) {
                 chunks.push(event.data);
@@ -202,7 +203,11 @@ function startRecording() {
 }
 
 async function stopRecording() {
-    mediaRecorder.stop();
+    // Esperar a que se complete la grabación y se obtengan los datos
+    await new Promise((resolve) => {
+        mediaRecorder.addEventListener('stop', resolve);
+        mediaRecorder.stop();
+    });
 
     recordButton.disabled = false;
     stopButton.disabled = true;
@@ -224,7 +229,7 @@ async function stopRecording() {
         .then((response) => response.json())
         .then((data) => {
             console.log(data);
-            // write the response in input
+            // Escribir la respuesta en el input
             inputElement.value = data.text;
         })
         .catch((error) => {

@@ -36,25 +36,6 @@ function init() {
     recordButton.disabled = false;
     stopButton.disabled = true;
 
-
-    // NOTE: audio is not captured
-    // navigator.mediaDevices.getUserMedia({ audio: true })
-    //     .then(function (stream) {
-    //         mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
-    //         recordButton.disabled = false;
-
-    //         mediaRecorder.addEventListener('dataavailable', function (event) {
-    //             chunks.push(event.data);
-    //         });
-
-    //         mediaRecorder.addEventListener('stop', function () {
-    //             sendAudioToGPT();
-    //         });
-    //     })
-    //     .catch(function (error) {
-    //         console.error('Micro error:', error);
-    //     });
-
     inputElement.addEventListener('keypress', function (event) {
         if (event.key === 'Enter') {
             processInput();

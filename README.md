@@ -1,6 +1,6 @@
 # MIAGEGPT
 
-This is a simplify version of OpenAI ChatGPT using GPT-3.5 turbo and Dall-E to generate images.
+This is a simplified version of OpenAI ChatGPT that uses GPT-3.5 turbo and Dall-E to generate images.
 
 ### Setup
 
